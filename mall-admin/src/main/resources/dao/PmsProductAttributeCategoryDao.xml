@@ -5,15 +5,5 @@
         <collection property="productAttributeList" columnPrefix="attr_" resultMap="com.macro.mall.mapper.PmsProductAttributeMapper.BaseResultMap">
         </collection>
     </resultMap>
-    <select id="getListWithAttr" resultMap="getListWithAttrMap">
-        SELECT
-            pac.id,
-            pac.name,
-            pa.id attr_id,
-            pa.name attr_name
-        FROM
-            pms_product_attribute_category pac
-            LEFT JOIN pms_product_attribute pa ON pac.id = pa.product_attribute_category_id
-        AND pa.type=1;
-    </select>
+
 </mapper>
