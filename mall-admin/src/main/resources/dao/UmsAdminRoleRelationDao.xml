@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.macro.mall.dao.UmsAdminRoleRelationDao">
-    <!--批量新增回写主键支持-->
+    <select id="getPermission" resultMap="com.macro.mall.mapper.UmsPermissionMapper.BaseResultMap">
+        SELECT
+        p.*
+        FROM ums_admin_role_relation ar
+        LEFT JOIN ums_role_permission_relation rp ON rp.role_id = ar.role_id
+        LEFT JOIN ums_permission p ON p.id = rp.permission_id
+        WHERE
+        ar.admin_id = #{adminId}
+        and p.pid is not null
+        and p.pid not in (
+          select pid from ums_admin_permission_relation pr
+          where pr.type = -1
+          and pr.admin_id = #{adminId}
+        )
+        UNION
+        SELECT
+        p.*
+        FROM ums_admin_permission_relation pr
+        LEFT JOIN ums_permission p on p.id = pr.permission_id
+        where
+        pr.type = 1
+        and pr.admin_id = #{adminId}
+    </select>
 
 </mapper>
