@@ -2,8 +2,6 @@ package com.macro.mall;
 
 
 import cn.hutool.json.JSONUtil;
-import com.macro.mall.dao.PmsMemberPriceDao;
-import com.macro.mall.dao.PmsProductDao;
 import com.macro.mall.dto.PmsProductResult;
 import com.macro.mall.model.PmsMemberPrice;
 import org.junit.Assert;
