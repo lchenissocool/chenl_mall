@@ -18,5 +18,16 @@
 
     </resultMap>
 
+    <update id="updatePublishStatusBatch" parameterType="java.util.List">
+        <foreach collection="productList" close="" index="index" item="item" open="" separator=";">
+            UPDATE
+            pms_product
+            SET
+            publish_status = #{item.publishStatus}
+            where
+            id = #{item.id}
+        </foreach>
+    </update>
+
 
 </mapper>

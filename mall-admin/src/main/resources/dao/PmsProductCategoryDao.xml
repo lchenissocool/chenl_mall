@@ -7,4 +7,14 @@
                     columnPrefix="child_"></collection>
     </resultMap>
 
+    <select id="listWithChildren" resultMap="listWithChildrenMap">
+        SELECT
+        c1.id,
+        c1.name,
+        c2.id child_id,
+        c2.name child_name
+        FROM pms_product_category c1 LEFT JOIN pms_product_category c2 ON c1.id = c2.parent_id
+        WHERE c1.parent_id = 0
+    </select>
+
 </mapper>
